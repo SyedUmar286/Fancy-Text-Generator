@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Fancy Text Generator</title>
+    <style>
+        /* Modern Design & Dark Mode Support */
+        :root {
+            --bg: #f4f7f6;
+            --card: #ffffff;
+            --text: #333;
+            --accent: #007bff;
+        }
+        body.dark {
+            --bg: #1a1a1a;
+            --card: #2d2d2d;
+            --text: #f4f7f6;
+            --accent: #3498db;
+        }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Segoe UI', sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            transition: 0.3s;
+        }
+        .container { 
+            background: var(--card); 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            display: inline-block; 
+            width: 95%; 
+            max-width: 600px; 
+        }
+        .theme-btn {
+            position: absolute; top: 20px; right: 20px;
+            padding: 10px; cursor: pointer; border-radius: 50%;
+            border: none; background: var(--accent); color: white;
+        }
+        input { 
+            width: 85%; padding: 15px; margin: 20px 0; 
+            border: 2px solid #ddd; border-radius: 12px; 
+            font-size: 18px; outline: none;
+        }
+        .font-item { 
+            background: var(--bg); border: 1px solid rgba(0,0,0,0.05); 
+            padding: 15px; margin-bottom: 12px; border-radius: 10px; 
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .font-text { font-size: 20px; word-break: break-all; text-align: left; padding-right: 10px; }
+        .copy-btn { 
+            background: var(--accent); color: white; border: none; 
+            padding: 8px 15px; border-radius: 8px; cursor: pointer; min-width: 70px;
+        }
+        .copy-btn.success { background: #2ecc71; }
+    </style>
+</head>
+<body>
+
+<button class="theme-btn" onclick="toggleTheme()">🌓</button>
+
+<div class="container">
+    <h1>✨ Fancy Text Generator ✨</h1>
+    <p>Apna naam likhein aur cool fonts copy karein!</p>
+    
+    <input type="text" id="userInput" placeholder="Yahan likhna shuru karein..." oninput="generateFonts()">
+    
+    <div id="results">
+        </div>
+</div>
+
+<script>
+    // Theme Toggle
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
+
+    // Font Mapping Data
+    const styles = [
+        { name: "Cursive", map: {"a":"𝓪","b":"𝓫","c":"𝓬","d":"𝓭","e":"𝓮","f":"𝓯","g":"𝓰","h":"𝓱","i":"𝓲","j":"𝓳","k":"𝓴","l":"𝓵","m":"𝓶","n":"𝓷","o":"𝓸","p":"𝓹","q":"𝓺","r":"𝓻","s":"𝓼","t":"𝓽","u":"𝓾","v":"𝓿","w":"𝔀","x":"𝔁","y":"𝔂","z":"𝔃"} },
+        { name: "Gothic", map: {"a":"𝔞","b":"𝔟","c":"𝔠","d":"𝔡","e":"𝔢","f":"𝔣","g":"𝔤","h":"𝔥","i":"𝔦","j":"𝔧","k":"𝔨","l":"𝔩","m":"𝔪","n":"𝔫","o":"𝔬","p":"𝔭","q":"𝔮","r":"𝔯","s":"𝔰","t":"𝔱","u":"","v":"𝔳","w":"𝔴","x":"𝔵","y":"𝔶","z":"𝔷"} },
+        { name: "Bubbles", map: {"a":"ⓐ","b":"ⓑ","c":"ⓒ","d":"ⓓ","e":"ⓔ","f":"ⓕ","g":"ⓖ","h":"ⓗ","i":"ⓘ","j":"ⓙ","k":"ⓚ","l":"ⓛ","m":"ⓜ","n":"ⓝ","o":"ⓞ","p":"ⓟ","q":"ⓠ","r":"ⓡ","s":"ⓢ","t":"ⓣ","u":"ⓤ","v":"ⓥ","w":"ⓦ","x":"ⓧ","y":"ⓨ","z":"ⓩ"} },
+        { name: "Bold", map: {"a":"𝐛","b":"𝐛","c":"𝐜","d":"𝐝","e":"𝐞","f":"𝐟","g":"𝐠","h":"𝐡","i":"𝐢","j":"𝐣","k":"𝐤","l":"𝐥","m":"𝐦","n":"𝐧","o":"𝐨","p":"𝐩","q":"𝐪","r":"𝐫","s":"𝐬","t":"𝐭","u":"𝐮","v":"𝐯","w":"𝐰","x":"𝐱","y":"𝐲","z":"𝐳"} },
+        { name: "Small Caps", map: {"a":"ᴀ","b":"ʙ","c":"ᴄ","d":"ᴅ","e":"ᴇ","f":"ꜰ","g":"ɢ","h":"ʜ","i":"ɪ","j":"ᴊ","k":"ᴋ","l":"ʟ","m":"ᴍ","n":"ɴ","o":"ᴏ","p":"ᴘ","q":"ǫ","r":"ʀ","s":"s","t":"ᴛ","u":"ᴜ","v":"ᴠ","w":"ᴡ","x":"x","y":"ʏ","z":"ᴢ"} },
+        { name: "Monospace", map: {"a":"𝚊","b":"𝚋","c":"𝚌","d":"𝚍","e":"𝚎","f":"𝚏","g":"𝚐","h":"𝚑","i":"𝚒","j":"𝚓","k":"𝚔","l":"𝚕","m":"𝚖","n":"𝚗","o":"𝚘","p":"𝚙","q":"𝚚","r":"𝚛","s":"𝚜","t":"𝚝","u":"𝚞","v":"𝚟","w":"𝚠","x":"𝚡","y":"𝚢","z":"𝚣"} },
+        { name: "Double Struck", map: {"a":"𝕒","b":"𝕓","c":"𝕔","d":"𝕕","e":"𝕖","f":"𝕗","g":"𝕘","h":"𝕙","i":"𝕚","j":"𝕛","k":"𝕜","l":"𝕝","m":"𝕞","n":"𝕟","o":"𝕠","p":"𝕡","q":"𝕢","r":"𝕣","s":"𝕤","t":"𝕥","u":"𝕦","v":"𝕧","w":"𝕨","x":"𝕩","y":"𝕪","z":"𝕫"} }
+    ];
+
+    function generateFonts() {
+        const input = document.getElementById('userInput').value;
+        const results = document.getElementById('results');
+        results.innerHTML = "";
+
+        if(input.trim() === "") return;
+
+        styles.forEach(style => {
+            let transformed = input.toLowerCase().split('').map(char => style.map[char] || char).join('');
+            
+            let div = document.createElement('div');
+            div.className = "font-item";
+            div.innerHTML = `
+                <span class="font-text">${transformed}</span>
+                <button class="copy-btn" onclick="copyText(this, '${transformed}')">Copy</button>
+            `;
+            results.appendChild(div);
+        });
+    }
+
+    function copyText(btn, text) {
+        navigator.clipboard.writeText(text);
+        const originalText = btn.innerText;
+        btn.innerText = "Saved!";
+        btn.classList.add('success');
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('success');
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
