@@ -3,65 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viral Fancy Text Generator - 150+ Styles</title>
+    <title>VIP Fancy Text Generator</title>
     <style>
-        /* Light Mode Default */
-        :root {
-            --bg: #f4f7f6;
-            --card: #ffffff;
-            --text: #333;
-            --accent: #007bff;
-        }
-        /* Dark Mode only when class 'dark' is added */
-        body.dark {
-            --bg: #1a1a1a;
-            --card: #2d2d2d;
-            --text: #f4f7f6;
-            --accent: #3498db;
-        }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            text-align: center; 
-            padding: 20px; 
-            transition: 0.3s;
-        }
-        .container { 
-            background: var(--card); 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            display: inline-block; 
-            width: 95%; 
-            max-width: 700px; 
-        }
-        /* Dark Mode Button at the top right */
-        .theme-btn {
-            position: fixed; top: 20px; right: 20px;
-            padding: 12px; cursor: pointer; border-radius: 50%;
-            border: none; background: var(--accent); color: white;
-            z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        input { 
-            width: 90%; padding: 15px; margin: 20px 0; 
-            border: 2px solid #ddd; border-radius: 12px; 
-            font-size: 20px; outline: none; transition: 0.3s;
-            background: var(--card); color: var(--text);
-        }
+        :root { --bg: #f8f9fa; --card: #ffffff; --text: #2d3436; --accent: #0984e3; }
+        body.dark { --bg: #1e272e; --card: #2f3640; --text: #f5f6fa; --accent: #00a8ff; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; text-align: center; transition: 0.3s; padding: 15px; }
+        .container { background: var(--card); padding: 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 650px; display: inline-block; }
+        .theme-btn { position: fixed; top: 20px; right: 20px; padding: 12px; cursor: pointer; border-radius: 50%; border: none; background: var(--accent); color: white; z-index: 1000; }
+        input { width: 90%; padding: 15px; margin: 20px 0; border: 2px solid #dfe6e9; border-radius: 12px; font-size: 18px; outline: none; background: var(--card); color: var(--text); }
         input:focus { border-color: var(--accent); }
-        .font-item { 
-            background: var(--bg); border: 1px solid rgba(0,0,0,0.05); 
-            padding: 18px; margin-bottom: 15px; border-radius: 12px; 
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .font-text { font-size: 22px; word-break: break-all; text-align: left; flex: 1; padding-right: 15px; }
-        .copy-btn { 
-            background: var(--accent); color: white; border: none; 
-            padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
-        }
-        .copy-btn.success { background: #2ecc71; }
-        footer { margin-top: 40px; font-size: 14px; opacity: 0.7; }
+        .section-title { text-align: left; font-size: 14px; text-transform: uppercase; color: var(--accent); margin: 15px 0 10px 5px; font-weight: bold; letter-spacing: 1px; }
+        .font-item { background: var(--bg); border: 1px solid rgba(0,0,0,0.05); padding: 15px; margin-bottom: 12px; border-radius: 12px; display: flex; flex-direction: column; position: relative; }
+        .style-label { font-size: 10px; color: #888; text-align: left; margin-bottom: 5px; }
+        .font-row { display: flex; justify-content: space-between; align-items: center; }
+        .font-text { font-size: 20px; word-break: break-all; text-align: left; flex: 1; }
+        .btn-group { display: flex; gap: 8px; }
+        .btn { border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .copy-btn { background: var(--accent); color: white; }
+        .fav-btn { background: #ffeaa7; color: #d63031; }
+        .fav-btn.active { background: #fab1a0; color: white; }
+        .success-copy { background: #55efc4 !important; }
+        footer { margin-top: 30px; font-size: 12px; opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -69,96 +31,127 @@
 <button class="theme-btn" onclick="toggleTheme()">🌓</button>
 
 <div class="container">
-    <h1>✨ Viral Fancy Text Generator ✨</h1>
-    <p>Generate 150+ stylish fonts for social media instantly!</p>
+    <h1>💎 VIP Font Style 💎</h1>
+    <p>Premium Fonts for Social Media</p>
     
-    <input type="text" id="userInput" placeholder="Type your text here..." oninput="generateFonts()">
-    
-    <div id="results">
-        </div>
+    <input type="text" id="userInput" placeholder="Enter name here..." oninput="generateAll()">
+
+    <div id="favorites-section"></div>
+    <div id="results"></div>
 
     <hr style="margin-top: 40px; border: 0; border-top: 1px solid #eee;">
     <footer>
-        <div style="margin-bottom: 15px;">
-            <a href="#" onclick="alert('Privacy Policy: We do not store your text. Everything happens on your device.')" style="color: var(--accent); text-decoration: none; margin-right: 20px;">Privacy Policy</a>
-            <a href="mailto:contact@yourdomain.com" style="color: var(--accent); text-decoration: none;">Contact Us</a>
-        </div>
-        <p>&copy; 2024 FancyTextPro. English Version.</p>
+        <a href="#" onclick="alert('Safe & Secure')" style="color: var(--accent); text-decoration: none; margin-right: 15px;">Privacy Policy</a>
+        <a href="mailto:support@site.com" style="color: var(--accent); text-decoration: none;">Contact Us</a>
     </footer>
 </div>
 
 <script>
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
+    let favorites = JSON.parse(localStorage.getItem('fontFavs')) || [];
+
+    function toggleTheme() { document.body.classList.toggle('dark'); }
+
+    const styleDefinitions = [
+        { name: "Bold Serif", u: 0x1D400, l: 0x1D41A },
+        { name: "Italic Professional", u: 0x1D434, l: 0x1D44E },
+        { name: "Monospace Code", u: 0x1D670, l: 0x1D68A },
+        { name: "Double Struck", u: 0x1D538, l: 0x1D552 },
+        { name: "Sans Bold", u: 0x1D5D4, l: 0x1D5EE }
+    ];
+
+    const decorations = [
+        { name: "Classic Wings", f: t => `꧁ ${t} ꧂` },
+        { name: "King Crown", f: t => `👑 ${t} 👑` },
+        { name: "Star Style", f: t => `★彡 ${t} 彡★` },
+        { name: "Heart Beat", f: t => `♥ ${t} ♥` },
+        { name: "Diamond", f: t => `💎 ${t} 💎` },
+        { name: "Square Box", f: t => `[ ${t} ]` },
+        { name: "Fire Style", f: t => `🔥 ${t} 🔥` },
+        { name: "Cross Line", f: t => `† ${t} †` }
+    ];
+
+    function transform(str, uStart, lStart) {
+        return str.split('').map(c => {
+            let code = c.charCodeAt(0);
+            if (code >= 65 && code <= 90) return String.fromCodePoint(uStart + (code - 65));
+            if (code >= 97 && code <= 122) return String.fromCodePoint(lStart + (code - 97));
+            return c;
+        }).join('');
     }
 
-    // Mapping for different Unicode alphabets
-    const fontMaps = {
-        "Script": [0x1D4EA, 0x1D4D0],
-        "Bold": [0x1D5D4, 0x1D5EE],
-        "Italic": [0x1D608, 0x1D622],
-        "Monospace": [0x1D670, 0x1D68A],
-        "Gothic": [0x1D504, 0x1D51E],
-        "Double Struck": [0x1D538, 0x1D552],
-        "Sans Bold": [0x1D5A0, 0x1D5BA]
-    };
-
-    function generateFonts() {
+    function generateAll() {
         const input = document.getElementById('userInput').value;
         const results = document.getElementById('results');
+        const favSec = document.getElementById('favorites-section');
         results.innerHTML = "";
+        favSec.innerHTML = "";
+
         if(!input.trim()) return;
 
-        // 1. Core Unicode Styles
-        Object.keys(fontMaps).forEach(key => {
-            let baseText = transformText(input, fontMaps[key][0], fontMaps[key][1]);
-            createFontItem(baseText);
-            // Mix with decorative symbols for 100+ variations
-            addDecoratedVersions(baseText);
+        // Show Favorites First
+        if(favorites.length > 0) {
+            favSec.innerHTML = `<div class="section-title">⭐ Your Favorites</div>`;
+            favorites.forEach(favId => {
+                const styleObj = getStyleById(favId, input);
+                if(styleObj) favSec.appendChild(createItem(styleObj.text, styleObj.name, true, favId));
+            });
+        }
+
+        results.innerHTML = `<div class="section-title">🚀 All Styles</div>`;
+        
+        // 1. Unicode Styles
+        styleDefinitions.forEach((s, idx) => {
+            let t = transform(input, s.u, s.l);
+            results.appendChild(createItem(t, s.name, false, `u-${idx}`));
         });
 
-        // 2. Extra Unique Decorations
-        const simpleDeco = [
-            t => `꧁ ${t} ꧂`, t => `『${t}』`, t => `【${t}】`, t => `★ ${t} ★`, 
-            t => `⚡ ${t} ⚡`, t => `(っ◔◡◔)っ ${t}`, t => `×º°”˜ ${t} ˜”°º×`,
-            t => `彡 ${t} 彡`, t => `亗 ${t} 亗`, t => `╰ ${t} ╯`, t => `⫷ ${t} ⫸`
-        ];
-        simpleDeco.forEach(d => createFontItem(d(input)));
+        // 2. Decorated Styles (Mixing decorations with fonts)
+        decorations.forEach((d, idx) => {
+            let base = transform(input, 0x1D5D4, 0x1D5EE); // Using Sans Bold as base for deco
+            results.appendChild(createItem(d.f(base), d.name, false, `d-${idx}`));
+        });
     }
 
-    function addDecoratedVersions(txt) {
-        const decoPatterns = [
-            t => `» ${t} «`, t => `◈ ${t} ◈`, t => `• ${t} •`, t => `[ ${t} ]`,
-            t => `✨ ${t} ✨`, t => `† ${t} †`, t => `| ${t} |`, t => `~ ${t} ~`
-        ];
-        // Just adding 5 patterns per font type to keep it clean but huge in list
-        decoPatterns.slice(0, 5).forEach(p => createFontItem(p(txt)));
-    }
-
-    function transformText(str, upper, lower) {
-        let res = "";
-        for (let i = 0; i < str.length; i++) {
-            let c = str.charCodeAt(i);
-            if (c >= 65 && c <= 90) res += String.fromCodePoint(upper + (c - 65));
-            else if (c >= 97 && c <= 122) res += String.fromCodePoint(lower + (c - 97));
-            else res += str[i];
-        }
-        return res;
-    }
-
-    function createFontItem(text) {
-        let div = document.createElement('div');
+    function createItem(text, styleName, isFav, id) {
+        const div = document.createElement('div');
         div.className = "font-item";
-        div.innerHTML = `<span class="font-text">${text}</span><button class="copy-btn" onclick="copyText(this, '${text}')">Copy</button>`;
-        document.getElementById('results').appendChild(div);
+        div.innerHTML = `
+            <div class="style-label">${styleName}</div>
+            <div class="font-row">
+                <div class="font-text">${text}</div>
+                <div class="btn-group">
+                    <button class="btn fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${id}')">${isFav ? '❤️' : '♡'}</button>
+                    <button class="btn copy-btn" onclick="copyText(this, '${text}')">Copy</button>
+                </div>
+            </div>
+        `;
+        return div;
+    }
+
+    function getStyleById(id, input) {
+        if(id.startsWith('u-')) {
+            let s = styleDefinitions[id.split('-')[1]];
+            return { text: transform(input, s.u, s.l), name: s.name };
+        }
+        if(id.startsWith('d-')) {
+            let d = decorations[id.split('-')[1]];
+            return { text: d.f(transform(input, 0x1D5D4, 0x1D5EE)), name: d.name };
+        }
+        return null;
+    }
+
+    function toggleFav(id) {
+        if(favorites.includes(id)) favorites = favorites.filter(f => f !== id);
+        else favorites.push(id);
+        localStorage.setItem('fontFavs', JSON.stringify(favorites));
+        generateAll();
     }
 
     function copyText(btn, text) {
         navigator.clipboard.writeText(text);
-        const old = btn.innerText;
-        btn.innerText = "Copied!";
-        btn.classList.add('success');
-        setTimeout(() => { btn.innerText = old; btn.classList.remove('success'); }, 1000);
+        btn.innerText = "Saved!";
+        btn.classList.add('success-copy');
+        setTimeout(() => { btn.innerText = "Copy"; btn.classList.remove('success-copy'); }, 1000);
     }
 </script>
 
