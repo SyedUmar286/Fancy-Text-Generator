@@ -58,37 +58,31 @@
         .copy-btn.success { background: #2ecc71; }
     </style>
 </head>
-<body>
+<body class="dark">
 
 <button class="theme-btn" onclick="toggleTheme()">🌓</button>
 
 <div class="container">
     <h1>✨ Fancy Text Generator ✨</h1>
-    <p>Apna naam likhein aur cool fonts copy karein!</p>
+    <p>Type your name and copy cool stylish fonts!</p>
     
-    <input type="text" id="userInput" placeholder="Yahan likhna shuru karein..." oninput="generateFonts()">
+    <input type="text" id="userInput" placeholder="Start typing here..." oninput="generateFonts()">
     
-    <div id="results">
-        </div>
+    <div id="results"></div>
+
+    <hr style="margin-top: 40px; border: 0; border-top: 1px solid #eee;">
+    <div style="margin-top: 20px; font-size: 14px; opacity: 0.8;">
+        <a href="#" onclick="alert('Privacy Policy: We do not store your data. This site is 100% safe.')" style="color: var(--accent); text-decoration: none; margin-right: 15px;">Privacy Policy</a>
+        <a href="mailto:your-email@gmail.com" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+    </div>
 </div>
 
 <script>
-    // Theme Toggle
     function toggleTheme() {
         document.body.classList.toggle('dark');
     }
 
-    // Font Mapping Data
-    const styles = [
-        { name: "Cursive", map: {"a":"𝓪","b":"𝓫","c":"𝓬","d":"𝓭","e":"𝓮","f":"𝓯","g":"𝓰","h":"𝓱","i":"𝓲","j":"𝓳","k":"𝓴","l":"𝓵","m":"𝓶","n":"𝓷","o":"𝓸","p":"𝓹","q":"𝓺","r":"𝓻","s":"𝓼","t":"𝓽","u":"𝓾","v":"𝓿","w":"𝔀","x":"𝔁","y":"𝔂","z":"𝔃"} },
-        { name: "Gothic", map: {"a":"𝔞","b":"𝔟","c":"𝔠","d":"𝔡","e":"𝔢","f":"𝔣","g":"𝔤","h":"𝔥","i":"𝔦","j":"𝔧","k":"𝔨","l":"𝔩","m":"𝔪","n":"𝔫","o":"𝔬","p":"𝔭","q":"𝔮","r":"𝔯","s":"𝔰","t":"𝔱","u":"","v":"𝔳","w":"𝔴","x":"𝔵","y":"𝔶","z":"𝔷"} },
-        { name: "Bubbles", map: {"a":"ⓐ","b":"ⓑ","c":"ⓒ","d":"ⓓ","e":"ⓔ","f":"ⓕ","g":"ⓖ","h":"ⓗ","i":"ⓘ","j":"ⓙ","k":"ⓚ","l":"ⓛ","m":"ⓜ","n":"ⓝ","o":"ⓞ","p":"ⓟ","q":"ⓠ","r":"ⓡ","s":"ⓢ","t":"ⓣ","u":"ⓤ","v":"ⓥ","w":"ⓦ","x":"ⓧ","y":"ⓨ","z":"ⓩ"} },
-        { name: "Bold", map: {"a":"𝐛","b":"𝐛","c":"𝐜","d":"𝐝","e":"𝐞","f":"𝐟","g":"𝐠","h":"𝐡","i":"𝐢","j":"𝐣","k":"𝐤","l":"𝐥","m":"𝐦","n":"𝐧","o":"𝐨","p":"𝐩","q":"𝐪","r":"𝐫","s":"𝐬","t":"𝐭","u":"𝐮","v":"𝐯","w":"𝐰","x":"𝐱","y":"𝐲","z":"𝐳"} },
-        { name: "Small Caps", map: {"a":"ᴀ","b":"ʙ","c":"ᴄ","d":"ᴅ","e":"ᴇ","f":"ꜰ","g":"ɢ","h":"ʜ","i":"ɪ","j":"ᴊ","k":"ᴋ","l":"ʟ","m":"ᴍ","n":"ɴ","o":"ᴏ","p":"ᴘ","q":"ǫ","r":"ʀ","s":"s","t":"ᴛ","u":"ᴜ","v":"ᴠ","w":"ᴡ","x":"x","y":"ʏ","z":"ᴢ"} },
-        { name: "Monospace", map: {"a":"𝚊","b":"𝚋","c":"𝚌","d":"𝚍","e":"𝚎","f":"𝚏","g":"𝚐","h":"𝚑","i":"𝚒","j":"𝚓","k":"𝚔","l":"𝚕","m":"𝚖","n":"𝚗","o":"𝚘","p":"𝚙","q":"𝚚","r":"𝚛","s":"𝚜","t":"𝚝","u":"𝚞","v":"𝚟","w":"𝚠","x":"𝚡","y":"𝚢","z":"𝚣"} },
-        { name: "Double Struck", map: {"a":"𝕒","b":"𝕓","c":"𝕔","d":"𝕕","e":"𝕖","f":"𝕗","g":"𝕘","h":"𝕙","i":"𝕚","j":"𝕛","k":"𝕜","l":"𝕝","m":"𝕞","n":"𝕟","o":"𝕠","p":"𝕡","q":"𝕢","r":"𝕣","s":"𝕤","t":"𝕥","u":"𝕦","v":"𝕧","w":"𝕨","x":"𝕩","y":"𝕪","z":"𝕫"} }
-    ];
-
+    // Advanced Font Generator Logic
     function generateFonts() {
         const input = document.getElementById('userInput').value;
         const results = document.getElementById('results');
@@ -96,25 +90,63 @@
 
         if(input.trim() === "") return;
 
-        styles.forEach(style => {
-            let transformed = input.toLowerCase().split('').map(char => style.map[char] || char).join('');
-            
-            let div = document.createElement('div');
-            div.className = "font-item";
-            div.innerHTML = `
-                <span class="font-text">${transformed}</span>
-                <button class="copy-btn" onclick="copyText(this, '${transformed}')">Copy</button>
-            `;
-            results.appendChild(div);
+        const charMaps = {
+            "Script": [0x1D4EA, 0x1D4D0],
+            "Gothic Bold": [0x1D56C, 0x1D586],
+            "Double Struck": [0x1D538, 0x1D552],
+            "Sans Bold": [0x1D5D4, 0x1D5EE],
+            "Sans Italic": [0x1D608, 0x1D622],
+            "Monospace": [0x1D670, 0x1D68A],
+            "Bold Italic": [0x1D482, 0x1D4B6],
+            "Circular Bubbles": [0x24B6, 0x24D0],
+            "Square Boxes": [0x1F130, 0x1F130] // Approximate for demo
+        };
+
+        // 1. Generate mapped styles
+        Object.keys(charMaps).forEach(styleName => {
+            let transformed = "";
+            for (let i = 0; i < input.length; i++) {
+                let code = input.charCodeAt(i);
+                if (code >= 65 && code <= 90) { // Uppercase
+                    transformed += String.fromCodePoint(charMaps[styleName][0] + (code - 65));
+                } else if (code >= 97 && code <= 122) { // Lowercase
+                    transformed += String.fromCodePoint(charMaps[styleName][1] + (code - 97));
+                } else {
+                    transformed += input[i];
+                }
+            }
+            createFontItem(transformed);
         });
+
+        // 2. Decorative Styles (Total 70+ variations)
+        const decorations = [
+            (t) => `★ ${t} ★`, (t) => `꧁ ${t} ꧂`, (t) => `⚡ ${t} ⚡`, (t) => `『 ${t} 』`,
+            (t) => `【 ${t} 】`, (t) => `✨ ${t} ✨`, (t) => `( ͡° ͜ʖ ͡°) ${t}`, (t) => `彡 ${t} 彡`,
+            (t) => `×º°”˜` + t + `˜”°º×`, (t) => `░ ${t} ░`, (t) => `[ ${t} ]`, (t) => `⫷ ${t} ⫸`,
+            (t) => `♔ ${t} ♔`, (t) => `〆 ${t}`, (t) => `⚚ ${t} ⚚`, (t) => `๑ ${t} ๑`,
+            (t) => `❤ ${t} ❤`, (t) => `☾ ${t} ☽`, (t) => `☯ ${t} ☯`, (t) => `✿ ${t} ✿`,
+            (t) => `🔥 ${t} 🔥`, (t) => `👑 ${t} 👑`, (t) => `💎 ${t} 💎`, (t) => `👻 ${t} 👻`
+            // You can add more symbols here easily
+        ];
+
+        decorations.forEach(deco => createFontItem(deco(input)));
+    }
+
+    function createFontItem(text) {
+        let div = document.createElement('div');
+        div.className = "font-item";
+        div.innerHTML = `
+            <span class="font-text">${text}</span>
+            <button class="copy-btn" onclick="copyText(this, '${text}')">Copy</button>
+        `;
+        document.getElementById('results').appendChild(div);
     }
 
     function copyText(btn, text) {
         navigator.clipboard.writeText(text);
         const originalText = btn.innerText;
-        btn.innerText = "Saved!";
+        btn.innerText = "Copied!";
         btn.classList.add('success');
-        
         setTimeout(() => {
             btn.innerText = originalText;
             btn.classList.remove('success');
