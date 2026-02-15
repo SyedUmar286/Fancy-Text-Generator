@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://syedumar286.github.io/Fancy-Text-Generator/sitemap.xml
