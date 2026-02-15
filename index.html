@@ -14,48 +14,40 @@
     <link rel="apple-touch-icon" href="logo.png">
 
     <style>
-        :root { --bg: #f9fbff; --card: #ffffff; --text: #1a1a1a; --accent: #007bff; --heart: #ff4757; --gold: #ffca28; }
+        :root { --bg: #f9fbff; --card: #ffffff; --text: #1a1a1a; --accent: #007bff; --heart: #ff4757; --gold: #d4af37; --gold-light: #f9e29c; }
         body.dark { --bg: #121212; --card: #1e1e1e; --text: #f0f0f0; --accent: #37bcf9; }
         
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, sans-serif; transition: 0.3s; padding: 10px; margin: 0; }
         
-        /* PREMIUM STYLISH LOGO HEADER */
-        .header-box { padding: 40px 10px 20px; }
+        /* ROYAL GOLD LOGO HEADER */
+        .header-box { padding: 40px 10px 20px; text-align: center; }
+        .logo-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        
+        .crown-icon { font-size: 40px; color: var(--gold); filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
+        
         .stylish-logo { 
             font-size: 50px; 
             font-weight: 900; 
             text-transform: uppercase;
             letter-spacing: -2px;
-            position: relative;
-            display: inline-block;
-            background: linear-gradient(to right, #6610f2, #007bff, #00d2ff);
+            background: linear-gradient(to bottom, #f9e29c 0%, #d4af37 50%, #b38b2d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,123,255,0.2));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             font-family: 'Arial Black', sans-serif;
+            margin: 0;
         }
-        .stylish-logo::after {
-            content: "PREMIUM";
-            position: absolute;
-            top: -15px;
-            right: -20px;
-            background: var(--gold);
-            -webkit-text-fill-color: #000;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-        }
-        .sub-text { font-size: 16px; opacity: 0.6; margin-top: 10px; font-weight: 500; }
+        
+        .sub-text { font-size: 16px; opacity: 0.6; margin-top: 5px; font-weight: 500; letter-spacing: 1px; }
 
         .container { background: var(--card); padding: 35px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); width: 95%; max-width: 800px; margin: 20px auto; text-align: center; }
         
         .theme-btn { position: fixed; top: 15px; right: 15px; padding: 12px; cursor: pointer; border-radius: 50%; border: none; background: var(--accent); color: white; z-index: 1000; box-shadow: 0 4px 12px rgba(0,123,255,0.3); }
         
-        input { width: 88%; padding: 20px; margin: 25px 0; border: 2px solid #eef0f5; border-radius: 18px; font-size: 24px; outline: none; background: var(--card); color: var(--text); transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(0,123,255,0.2); }
+        input { width: 88%; padding: 20px; margin: 25px 0; border: 2px solid #eef0f5; border-radius: 18px; font-size: 24px; outline: none; background: var(--card); color: var(--text); transition: 0.3s; }
+        input:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
         
-        .section-header { text-align: left; font-size: 14px; font-weight: 800; color: var(--accent); margin: 30px 0 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 5px solid var(--accent); padding-left: 12px; }
+        .section-header { text-align: left; font-size: 14px; font-weight: 800; color: var(--gold); margin: 30px 0 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 5px solid var(--gold); padding-left: 12px; }
         
         .font-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.04); padding: 20px; margin-bottom: 15px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
         .font-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
@@ -79,7 +71,11 @@
 
 <div class="container">
     <div class="header-box">
-        <div class="stylish-logo">VIP FONTS</div>
+        <div class="logo-wrapper">
+            <span class="crown-icon">👑</span>
+            <h1 class="stylish-logo">VIP FONTS</h1>
+            <span class="crown-icon">👑</span>
+        </div>
         <div class="sub-text">Premium Text Styles & Font Generator</div>
     </div>
     
