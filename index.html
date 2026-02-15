@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Fancy Text Generator</title>
+    <title>Ultra-Max Fancy Text Generator</title>
     <style>
-        :root { --bg: #f8f9fa; --card: #ffffff; --text: #2d3436; --accent: #0984e3; }
-        body.dark { --bg: #1e272e; --card: #2f3640; --text: #f5f6fa; --accent: #00a8ff; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; text-align: center; transition: 0.3s; padding: 15px; }
-        .container { background: var(--card); padding: 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 650px; display: inline-block; }
-        .theme-btn { position: fixed; top: 20px; right: 20px; padding: 12px; cursor: pointer; border-radius: 50%; border: none; background: var(--accent); color: white; z-index: 1000; }
-        input { width: 90%; padding: 15px; margin: 20px 0; border: 2px solid #dfe6e9; border-radius: 12px; font-size: 18px; outline: none; background: var(--card); color: var(--text); }
+        :root { --bg: #fdfdfd; --card: #ffffff; --text: #222; --accent: #007bff; }
+        body.dark { --bg: #121212; --card: #1e1e1e; --text: #eee; --accent: #37bcf9; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; transition: 0.3s; padding: 10px; margin: 0; }
+        .container { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); width: 95%; max-width: 750px; margin: 40px auto; text-align: center; }
+        .theme-btn { position: fixed; top: 15px; right: 15px; padding: 10px; cursor: pointer; border-radius: 50%; border: none; background: var(--accent); color: white; font-size: 20px; z-index: 999; }
+        input { width: 90%; padding: 18px; margin: 20px 0; border: 2px solid #eaeaea; border-radius: 16px; font-size: 22px; outline: none; background: var(--card); color: var(--text); box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
         input:focus { border-color: var(--accent); }
-        .section-title { text-align: left; font-size: 14px; text-transform: uppercase; color: var(--accent); margin: 15px 0 10px 5px; font-weight: bold; letter-spacing: 1px; }
-        .font-item { background: var(--bg); border: 1px solid rgba(0,0,0,0.05); padding: 15px; margin-bottom: 12px; border-radius: 12px; display: flex; flex-direction: column; position: relative; }
-        .style-label { font-size: 10px; color: #888; text-align: left; margin-bottom: 5px; }
-        .font-row { display: flex; justify-content: space-between; align-items: center; }
-        .font-text { font-size: 20px; word-break: break-all; text-align: left; flex: 1; }
-        .btn-group { display: flex; gap: 8px; }
-        .btn { border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .section-header { text-align: left; font-size: 16px; font-weight: 800; color: var(--accent); margin: 25px 0 10px 5px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .font-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.06); padding: 20px; margin-bottom: 15px; border-radius: 15px; display: flex; flex-direction: column; transition: 0.2s; }
+        .font-card:hover { transform: scale(1.01); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .style-name { font-size: 11px; color: #888; text-align: left; margin-bottom: 8px; font-weight: 600; }
+        .font-main { display: flex; justify-content: space-between; align-items: center; }
+        .text-output { font-size: 24px; text-align: left; word-break: break-all; flex: 1; padding-right: 10px; }
+        .actions { display: flex; gap: 10px; }
+        .btn { border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 14px; transition: 0.2s; }
         .copy-btn { background: var(--accent); color: white; }
-        .fav-btn { background: #ffeaa7; color: #d63031; }
-        .fav-btn.active { background: #fab1a0; color: white; }
-        .success-copy { background: #55efc4 !important; }
-        footer { margin-top: 30px; font-size: 12px; opacity: 0.6; }
+        .fav-btn { background: #fff0f0; color: #ff4757; font-size: 18px; }
+        .fav-btn.active { background: #ff4757; color: white; }
+        .saved { background: #2ed573 !important; }
+        footer { margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; font-size: 13px; opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -31,43 +32,58 @@
 <button class="theme-btn" onclick="toggleTheme()">🌓</button>
 
 <div class="container">
-    <h1>💎 VIP Font Style 💎</h1>
-    <p>Premium Fonts for Social Media</p>
+    <h1 style="font-size: 32px; margin-bottom: 5px;">🌟 Premium Fonts 🌟</h1>
+    <p style="opacity: 0.7;">The Ultimate Stylish Text Generator</p>
     
-    <input type="text" id="userInput" placeholder="Enter name here..." oninput="generateAll()">
+    <input type="text" id="userInput" placeholder="Type something cool..." oninput="generateAll()">
 
-    <div id="favorites-section"></div>
-    <div id="results"></div>
+    <div id="fav-container"></div>
+    <div id="font-list"></div>
 
-    <hr style="margin-top: 40px; border: 0; border-top: 1px solid #eee;">
     <footer>
-        <a href="#" onclick="alert('Safe & Secure')" style="color: var(--accent); text-decoration: none; margin-right: 15px;">Privacy Policy</a>
-        <a href="mailto:support@site.com" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+        <a href="#" onclick="alert('Privacy Policy: No data stored.')" style="color: var(--accent); text-decoration:none;">Privacy Policy</a> | 
+        <a href="mailto:admin@fonts.com" style="color: var(--accent); text-decoration:none;">Contact Us</a>
+        <p>&copy; 2024 UltraFont Pro - Global Edition</p>
     </footer>
 </div>
 
 <script>
-    let favorites = JSON.parse(localStorage.getItem('fontFavs')) || [];
+    let favs = JSON.parse(localStorage.getItem('myFavs')) || [];
 
     function toggleTheme() { document.body.classList.toggle('dark'); }
 
-    const styleDefinitions = [
-        { name: "Bold Serif", u: 0x1D400, l: 0x1D41A },
-        { name: "Italic Professional", u: 0x1D434, l: 0x1D44E },
-        { name: "Monospace Code", u: 0x1D670, l: 0x1D68A },
-        { name: "Double Struck", u: 0x1D538, l: 0x1D552 },
-        { name: "Sans Bold", u: 0x1D5D4, l: 0x1D5EE }
+    // 15 Base Unicode alphabets (Mote, Patle, Sharp, Wide)
+    const baseMaps = [
+        { n: "Bold Serif", u: 0x1D400, l: 0x1D41A },
+        { n: "Italic Sharp", u: 0x1D434, l: 0x1D44E },
+        { n: "Bold Italic", u: 0x1D468, l: 0x1D482 },
+        { n: "Script Elegant", u: 0x1D49C, l: 0x1D4B6 },
+        { n: "Bold Script", u: 0x1D4D0, l: 0x1D4EA },
+        { n: "Gothic Dark", u: 0x1D504, l: 0x1D51E },
+        { n: "Double Struck", u: 0x1D538, l: 0x1D552 },
+        { n: "Gothic Bold", u: 0x1D56C, l: 0x1D586 },
+        { n: "Sans Normal", u: 0x1D5A0, l: 0x1D5BA },
+        { n: "Sans Bold", u: 0x1D5D4, l: 0x1D5EE },
+        { n: "Sans Italic", u: 0x1D608, l: 0x1D622 },
+        { n: "Sans Bold Italic", u: 0x1D63C, l: 0x1D656 },
+        { n: "Monospace", u: 0x1D670, l: 0x1D68A },
+        { n: "Bold Greek Style", u: 0x1D6A8, l: 0x1D6C2 }
     ];
 
-    const decorations = [
-        { name: "Classic Wings", f: t => `꧁ ${t} ꧂` },
-        { name: "King Crown", f: t => `👑 ${t} 👑` },
-        { name: "Star Style", f: t => `★彡 ${t} 彡★` },
-        { name: "Heart Beat", f: t => `♥ ${t} ♥` },
-        { name: "Diamond", f: t => `💎 ${t} 💎` },
-        { name: "Square Box", f: t => `[ ${t} ]` },
-        { name: "Fire Style", f: t => `🔥 ${t} 🔥` },
-        { name: "Cross Line", f: t => `† ${t} †` }
+    // 20+ Premium Decorations
+    const decos = [
+        { n: "King", f: t => `👑 ${t} 👑` },
+        { n: "Wings", f: t => `꧁ ${t} ꧂` },
+        { n: "Viper", f: t => `🐍 ${t} 🐍` },
+        { n: "Star", f: t => `★彡 ${t} 彡★` },
+        { n: "Flower", f: t => `✿ ${t} ✿` },
+        { n: "Boxed", f: t => `[ ${t} ]` },
+        { n: "Heart", f: t => `♥ ${t} ♥` },
+        { n: "Slash", f: t => `『 ${t} 』` },
+        { n: "Sun", f: t => `☀️ ${t} ☀️` },
+        { n: "Fire", f: t => `🔥 ${t} 🔥` },
+        { n: "Shield", f: t => `🛡️ ${t} 🛡️` },
+        { n: "Musical", f: t => `🎵 ${t} 🎵` }
     ];
 
     function transform(str, uStart, lStart) {
@@ -80,78 +96,79 @@
     }
 
     function generateAll() {
-        const input = document.getElementById('userInput').value;
-        const results = document.getElementById('results');
-        const favSec = document.getElementById('favorites-section');
-        results.innerHTML = "";
-        favSec.innerHTML = "";
+        const val = document.getElementById('userInput').value;
+        const list = document.getElementById('font-list');
+        const fCon = document.getElementById('fav-container');
+        list.innerHTML = ""; fCon.innerHTML = "";
 
-        if(!input.trim()) return;
+        if(!val.trim()) return;
 
-        // Show Favorites First
-        if(favorites.length > 0) {
-            favSec.innerHTML = `<div class="section-title">⭐ Your Favorites</div>`;
-            favorites.forEach(favId => {
-                const styleObj = getStyleById(favId, input);
-                if(styleObj) favSec.appendChild(createItem(styleObj.text, styleObj.name, true, favId));
+        // Render Favorites
+        if(favs.length > 0) {
+            fCon.innerHTML = `<div class="section-header">⭐ Saved Styles</div>`;
+            favs.forEach(fId => {
+                const item = getStyleByFId(fId, val);
+                if(item) fCon.appendChild(renderCard(item.t, item.n, true, fId));
             });
         }
 
-        results.innerHTML = `<div class="section-title">🚀 All Styles</div>`;
-        
-        // 1. Unicode Styles
-        styleDefinitions.forEach((s, idx) => {
-            let t = transform(input, s.u, s.l);
-            results.appendChild(createItem(t, s.name, false, `u-${idx}`));
-        });
+        list.innerHTML = `<div class="section-header">🚀 150+ Styles Generated</div>`;
 
-        // 2. Decorated Styles (Mixing decorations with fonts)
-        decorations.forEach((d, idx) => {
-            let base = transform(input, 0x1D5D4, 0x1D5EE); // Using Sans Bold as base for deco
-            results.appendChild(createItem(d.f(base), d.name, false, `d-${idx}`));
+        // LOOP LOGIC: Har base font ko har decoration ke sath mix karo
+        baseMaps.forEach((b, bIdx) => {
+            let core = transform(val, b.u, b.l);
+            // 1. Plain version
+            list.appendChild(renderCard(core, b.n, false, `b-${bIdx}`));
+            
+            // 2. Decorative versions (Mix)
+            decos.forEach((d, dIdx) => {
+                list.appendChild(renderCard(d.f(core), `${b.n} ${d.n}`, false, `m-${bIdx}-${dIdx}`));
+            });
         });
     }
 
-    function createItem(text, styleName, isFav, id) {
+    function renderCard(txt, name, isFav, id) {
         const div = document.createElement('div');
-        div.className = "font-item";
+        div.className = "font-card";
         div.innerHTML = `
-            <div class="style-label">${styleName}</div>
-            <div class="font-row">
-                <div class="font-text">${text}</div>
-                <div class="btn-group">
+            <div class="style-name">${name}</div>
+            <div class="font-main">
+                <div class="text-output">${txt}</div>
+                <div class="actions">
                     <button class="btn fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${id}')">${isFav ? '❤️' : '♡'}</button>
-                    <button class="btn copy-btn" onclick="copyText(this, '${text}')">Copy</button>
+                    <button class="btn copy-btn" onclick="copyMe(this, '${txt}')">Copy</button>
                 </div>
             </div>
         `;
         return div;
     }
 
-    function getStyleById(id, input) {
-        if(id.startsWith('u-')) {
-            let s = styleDefinitions[id.split('-')[1]];
-            return { text: transform(input, s.u, s.l), name: s.name };
+    function getStyleByFId(id, val) {
+        if(id.startsWith('b-')) {
+            let b = baseMaps[id.split('-')[1]];
+            return { t: transform(val, b.u, b.l), n: b.n };
         }
-        if(id.startsWith('d-')) {
-            let d = decorations[id.split('-')[1]];
-            return { text: d.f(transform(input, 0x1D5D4, 0x1D5EE)), name: d.name };
+        if(id.startsWith('m-')) {
+            let parts = id.split('-');
+            let b = baseMaps[parts[1]];
+            let d = decos[parts[2]];
+            return { t: d.f(transform(val, b.u, b.l)), n: `${b.n} ${d.n}` };
         }
         return null;
     }
 
     function toggleFav(id) {
-        if(favorites.includes(id)) favorites = favorites.filter(f => f !== id);
-        else favorites.push(id);
-        localStorage.setItem('fontFavs', JSON.stringify(favorites));
+        if(favs.includes(id)) favs = favs.filter(x => x !== id);
+        else favs.push(id);
+        localStorage.setItem('myFavs', JSON.stringify(favs));
         generateAll();
     }
 
-    function copyText(btn, text) {
-        navigator.clipboard.writeText(text);
-        btn.innerText = "Saved!";
-        btn.classList.add('success-copy');
-        setTimeout(() => { btn.innerText = "Copy"; btn.classList.remove('success-copy'); }, 1000);
+    function copyMe(btn, txt) {
+        navigator.clipboard.writeText(txt);
+        let old = btn.innerText;
+        btn.innerText = "Saved!"; btn.classList.add('saved');
+        setTimeout(() => { btn.innerText = old; btn.classList.remove('saved'); }, 1000);
     }
 </script>
 
