@@ -49,6 +49,7 @@
         .section-header { text-align: left; font-size: 14px; font-weight: 800; color: var(--gold); margin: 30px 0 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 5px solid var(--gold); padding-left: 12px; }
         
         .font-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.04); padding: 20px; margin-bottom: 15px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; overflow: hidden; }
+        .font-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
         
         .text-info { text-align: left; flex: 1; min-width: 0; }
         .style-name { font-size: 10px; font-weight: bold; opacity: 0.4; margin-bottom: 6px; display: block; letter-spacing: 1px; }
@@ -69,6 +70,7 @@
         
         #privacyModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
         .modal-content { background: var(--card); color: var(--text); margin: 10% auto; padding: 30px; border-radius: 20px; width: 80%; max-width: 500px; text-align: left; }
+        .close-btn { float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
 
         footer { margin-top: 50px; padding: 30px; font-size: 14px; opacity: 0.6; border-top: 1px solid #eee; }
     </style>
@@ -99,9 +101,19 @@
     </footer>
 </div>
 
+<div id="privacyModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closePrivacy()">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p>Your privacy is our priority. Generation happens locally.</p>
+    </div>
+</div>
+
 <script>
     let favorites = JSON.parse(localStorage.getItem('vip_fav_list')) || [];
     function toggleTheme() { document.body.classList.toggle('dark'); }
+    function openPrivacy() { document.getElementById('privacyModal').style.display = "block"; }
+    function closePrivacy() { document.getElementById('privacyModal').style.display = "none"; }
 
     const baseAlphabets = [
         { name: "Script Luxury", u: 0x1D49C, l: 0x1D4B6 },
@@ -123,23 +135,12 @@
         { n: "Star", f: t => `★彡 ${t} 彡★` }
     ];
 
-    // UPDATED: Advanced character check to prevent empty boxes
     function convert(str, u, l) {
         return str.split('').map(c => {
             let code = c.charCodeAt(0);
-            let charPoint;
-            
-            if (code >= 65 && code <= 90) charPoint = u + (code - 65);
-            else if (code >= 97 && code <= 122) charPoint = l + (code - 97);
-            else return c;
-
-            // Fallback: Agar device Unicode support nahi karta toh asli character dikhaye
-            try {
-                let fancyChar = String.fromCodePoint(charPoint);
-                return fancyChar;
-            } catch (e) {
-                return c; 
-            }
+            if (code >= 65 && code <= 90) return String.fromCodePoint(u + (code - 65));
+            if (code >= 97 && code <= 122) return String.fromCodePoint(l + (code - 97));
+            return c;
         }).join('');
     }
 
@@ -152,7 +153,7 @@
 
         let styles = [];
 
-        // Mixed Variety
+        // Mixed Variety for Top Section
         baseAlphabets.forEach((b, bi) => {
             let core = convert(input, b.u, b.l);
             decos.forEach((d, di) => {
