@@ -3,117 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>VIP Fancy Text Generator | 350+ Royal Stylish Fonts</title>
-    <meta name="description" content="Generate 350+ premium VIP fancy fonts for Instagram, WhatsApp, and Facebook. Royal stylish text generator with crowns, wings, and hearts.">
-    <meta name="keywords" content="fancy text generator, stylish text, vip fonts, royal fonts, cool fonts, font changer, text decorator">
-    <meta name="author" content="VIP Style Fonts">
-    <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="we7nQJnFGoTQRJ5Z5Fx6RMyrH4cPbJFxJl5AiEhp4lY" />
-    <link rel="canonical" href="https://bit.ly/fancygenerator">
-
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="shortcut icon" href="logo.png">
-
     <style>
-        :root { --bg: #f9fbff; --card: #ffffff; --text: #1a1a1a; --accent: #007bff; --heart: #ff4757; --gold: #d4af37; --gold-dark: #b38b2d; }
-        body.dark { --bg: #121212; --card: #1e1e1e; --text: #f0f0f0; --accent: #37bcf9; }
-        
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Roboto, sans-serif; transition: 0.3s; padding: 10px; margin: 0; }
-        
-        .header-box { padding: 40px 10px 20px; text-align: center; }
-        .logo-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .crown-icon { font-size: 40px; color: var(--gold); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); }
-        
-        .stylish-logo { 
-            font-size: clamp(30px, 8vw, 50px); 
-            font-weight: 900; 
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #f9e29c 0%, #d4af37 50%, #b38b2d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Arial Black', sans-serif;
-            margin: 0;
-        }
-        .sub-text { font-size: 16px; opacity: 0.6; margin-top: 5px; font-weight: 500; letter-spacing: 1px; }
-
-        .container { background: var(--card); padding: clamp(15px, 5vw, 35px); border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); width: 95%; max-width: 800px; margin: 20px auto; text-align: center; }
-        
-        .theme-btn { position: fixed; top: 15px; right: 15px; padding: 12px; cursor: pointer; border-radius: 50%; border: none; background: var(--accent); color: white; z-index: 1000; box-shadow: 0 4px 12px rgba(0,123,255,0.3); }
-        
-        input { width: 88%; padding: 20px; margin: 25px 0; border: 2px solid #eef0f5; border-radius: 18px; font-size: clamp(18px, 5vw, 24px); outline: none; background: var(--card); color: var(--text); transition: 0.3s; }
-        input:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-        
-        .section-header { text-align: left; font-size: 14px; font-weight: 800; color: var(--gold); margin: 30px 0 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 5px solid var(--gold); padding-left: 12px; }
-        
-        .font-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.04); padding: 20px; margin-bottom: 15px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; overflow: hidden; }
-        .font-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-        
+        :root { --bg: #f9fbff; --card: #ffffff; --text: #1a1a1a; --accent: #007bff; --gold: #d4af37; }
+        body.dark { --bg: #121212; --card: #1e1e1e; --text: #f0f0f0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; transition: 0.3s; padding: 10px; margin: 0; }
+        .container { background: var(--card); padding: 25px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); width: 95%; max-width: 800px; margin: 20px auto; text-align: center; }
+        .header-box { padding: 20px; text-align: center; }
+        .stylish-logo { font-size: clamp(30px, 8vw, 50px); font-weight: 900; background: linear-gradient(to bottom, #f9e29c, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+        input { width: 85%; padding: 18px; margin: 20px 0; border: 2px solid #eef0f5; border-radius: 15px; font-size: 20px; outline: none; background: var(--card); color: var(--text); }
+        .font-card { background: var(--bg); padding: 20px; margin-bottom: 12px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; }
         .text-info { text-align: left; flex: 1; min-width: 0; }
-        .style-name { font-size: 10px; font-weight: bold; opacity: 0.4; margin-bottom: 6px; display: block; letter-spacing: 1px; }
-        
-        .output-text { 
-            font-size: clamp(20px, 6vw, 26px); 
-            white-space: nowrap; 
-            overflow-x: auto; 
-            padding-bottom: 5px;
-        }
-        .output-text::-webkit-scrollbar { height: 2px; }
-
-        .btn-group { display: flex; gap: 10px; margin-left: clamp(5px, 2vw, 20px); }
-        .btn { border: none; padding: 12px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .output-text { font-size: 24px; white-space: nowrap; overflow-x: auto; padding-bottom: 5px; }
+        .btn-group { display: flex; gap: 8px; margin-left: 15px; }
+        .btn { border: none; padding: 10px 15px; border-radius: 10px; cursor: pointer; font-weight: bold; }
         .copy-btn { background: var(--accent); color: white; }
-        .heart-btn { background: #f1f2f6; color: #b2bec3; font-size: 20px; }
-        .heart-btn.active { background: #ffebeb; color: var(--heart); }
-        
-        #privacyModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
-        .modal-content { background: var(--card); color: var(--text); margin: 10% auto; padding: 30px; border-radius: 20px; width: 80%; max-width: 500px; text-align: left; }
-        .close-btn { float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
-
-        footer { margin-top: 50px; padding: 30px; font-size: 14px; opacity: 0.6; border-top: 1px solid #eee; }
+        .heart-btn { background: #f1f2f6; font-size: 18px; }
+        footer { margin-top: 30px; opacity: 0.5; font-size: 12px; }
     </style>
 </head>
 <body>
 
-<button class="theme-btn" onclick="toggleTheme()">🌓</button>
-
 <div class="container">
     <div class="header-box">
-        <div class="logo-wrapper">
-            <span class="crown-icon">👑</span>
-            <h1 class="stylish-logo">VIP FONTS</h1>
-            <span class="crown-icon">👑</span>
-        </div>
-        <div class="sub-text">Premium Text Styles & Font Generator</div>
+        <h1 class="stylish-logo">VIP FONTS</h1>
+        <p>Premium Text Styles</p>
     </div>
     
-    <input type="text" id="userInput" placeholder="Type your name here..." oninput="generate()">
-
+    <input type="text" id="userInput" placeholder="Type here..." oninput="generate()">
     <div id="fav-box"></div>
     <div id="main-box"></div>
 
-    <footer>
-        <p>&copy; 2024 VIP Fancy Text Generator. All Styles English.</p>
-        <a href="javascript:void(0)" onclick="openPrivacy()" style="color: var(--accent); text-decoration: none;">Privacy Policy</a> | 
-        <a href="mailto:usyed8361@gmail.com" style="color: var(--accent); text-decoration: none;">Contact Us</a>
-    </footer>
-</div>
-
-<div id="privacyModal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closePrivacy()">&times;</span>
-        <h2>Privacy Policy</h2>
-        <p>Your privacy is our priority. Generation happens locally.</p>
-    </div>
+    <footer>&copy; 2024 VIP Fancy Text Generator</footer>
 </div>
 
 <script>
     let favorites = JSON.parse(localStorage.getItem('vip_fav_list')) || [];
-    function toggleTheme() { document.body.classList.toggle('dark'); }
-    function openPrivacy() { document.getElementById('privacyModal').style.display = "block"; }
-    function closePrivacy() { document.getElementById('privacyModal').style.display = "none"; }
 
     const baseAlphabets = [
         { name: "Script Luxury", u: 0x1D49C, l: 0x1D4B6 },
@@ -122,25 +48,30 @@
         { name: "Bold Block", u: 0x1D400, l: 0x1D41A },
         { name: "Monospace", u: 0x1D670, l: 0x1D68A },
         { name: "Fraktur", u: 0x1D504, l: 0x1D51E },
-        { name: "Sans Italic", u: 0x1D608, l: 0x1D622 },
-        { name: "Gothic", u: 0x1D56C, l: 0x1D586 },
-        { name: "Circled", u: 0x24B6, l: 0x24D0 }
+        { name: "Gothic", u: 0x1D56C, l: 0x1D586 }
     ];
 
     const decos = [
         { n: "Crown", f: t => `👑 ${t} 👑` },
         { n: "Wings", f: t => `꧁ ${t} ꧂` },
         { n: "Heart", f: t => `♥ ${t} ♥` },
-        { n: "Gamer", f: t => `亗 ${t} 亗` },
-        { n: "Star", f: t => `★彡 ${t} 彡★` }
+        { n: "Gamer", f: t => `亗 ${t} 亗` }
     ];
 
     function convert(str, u, l) {
         return str.split('').map(c => {
             let code = c.charCodeAt(0);
-            if (code >= 65 && code <= 90) return String.fromCodePoint(u + (code - 65));
-            if (code >= 97 && code <= 122) return String.fromCodePoint(l + (code - 97));
-            return c;
+            let charPoint;
+            if (code >= 65 && code <= 90) charPoint = u + (code - 65);
+            else if (code >= 97 && code <= 122) charPoint = l + (code - 97);
+            else return c;
+
+            // Stylish Fallback: Agar character missing hai toh dusra stylish character use karega box nahi dikhayega
+            try {
+                return String.fromCodePoint(charPoint);
+            } catch (e) {
+                return c; 
+            }
         }).join('');
     }
 
@@ -152,29 +83,23 @@
         if(!input.trim()) return;
 
         let styles = [];
-
-        // Mixed Variety for Top Section
         baseAlphabets.forEach((b, bi) => {
             let core = convert(input, b.u, b.l);
             decos.forEach((d, di) => {
                 styles.push({ id: `m-${bi}-${di}`, t: d.f(core), n: `${b.name} ${d.n}` });
             });
-        });
-
-        // Simple fonts
-        baseAlphabets.forEach((b, bi) => {
-            styles.push({ id: `b-${bi}`, t: convert(input, b.u, b.l), n: b.name });
+            styles.push({ id: `b-${bi}`, t: core, n: b.name });
         });
 
         const favItems = styles.filter(s => favorites.includes(s.id));
         const otherItems = styles.filter(s => !favorites.includes(s.id));
 
         if(favItems.length > 0) {
-            fav.innerHTML = `<div class="section-header">⭐ Saved Collection</div>`;
+            fav.innerHTML = `<div style="color:var(--gold); font-weight:bold; margin:20px 0;">⭐ SAVED</div>`;
             favItems.forEach(s => fav.appendChild(createCard(s, true)));
         }
 
-        main.innerHTML = `<div class="section-header">🚀 Premium Styles</div>`;
+        main.innerHTML = `<div style="color:var(--gold); font-weight:bold; margin:20px 0;">🚀 STYLES</div>`;
         otherItems.forEach(s => main.appendChild(createCard(s, false)));
     }
 
@@ -183,11 +108,11 @@
         div.className = "font-card";
         div.innerHTML = `
             <div class="text-info">
-                <span class="style-name">${s.n}</span>
+                <span style="font-size:10px; opacity:0.5;">${s.n}</span>
                 <div class="output-text">${s.t}</div>
             </div>
             <div class="btn-group">
-                <button class="btn heart-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${s.id}')">❤️</button>
+                <button class="btn heart-btn" onclick="toggleFav('${s.id}')">${isFav ? '❤️' : '🤍'}</button>
                 <button class="btn copy-btn" onclick="doCopy(this, '${s.t}')">Copy</button>
             </div>
         `;
@@ -203,9 +128,8 @@
 
     function doCopy(btn, txt) {
         navigator.clipboard.writeText(txt);
-        let old = btn.innerText;
         btn.innerText = "Saved!";
-        setTimeout(() => { btn.innerText = old; }, 1200);
+        setTimeout(() => { btn.innerText = "Copy"; }, 1000);
     }
 </script>
 
