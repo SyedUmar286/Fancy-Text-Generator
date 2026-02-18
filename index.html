@@ -16,16 +16,6 @@
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="shortcut icon" href="logo.png">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "VIP Fonts Pro",
-      "url": "https://bit.ly/fancygenerator",
-      "image": "https://bit.ly/fancygenerator/logo.png"
-    }
-    </script>
-
     <style>
         :root { --bg: #f9fbff; --card: #ffffff; --text: #1a1a1a; --accent: #007bff; --heart: #ff4757; --gold: #d4af37; --gold-dark: #b38b2d; }
         body.dark { --bg: #121212; --card: #1e1e1e; --text: #f0f0f0; --accent: #37bcf9; }
@@ -61,20 +51,17 @@
         .font-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.04); padding: 20px; margin-bottom: 15px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; overflow: hidden; }
         .font-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
         
-        .text-info { text-align: left; flex: 1; min-width: 0; } /* min-width: 0 for flex child overflow */
+        .text-info { text-align: left; flex: 1; min-width: 0; }
         .style-name { font-size: 10px; font-weight: bold; opacity: 0.4; margin-bottom: 6px; display: block; letter-spacing: 1px; }
         
-        /* FIX: EK LINE MEIN RAHEGA AUR SCROLL HOGA */
         .output-text { 
             font-size: clamp(20px, 6vw, 26px); 
             white-space: nowrap; 
             overflow-x: auto; 
             padding-bottom: 5px;
-            -webkit-overflow-scrolling: touch;
         }
-        .output-text::-webkit-scrollbar { height: 3px; }
-        .output-text::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-        
+        .output-text::-webkit-scrollbar { height: 2px; }
+
         .btn-group { display: flex; gap: 10px; margin-left: clamp(5px, 2vw, 20px); }
         .btn { border: none; padding: 12px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .copy-btn { background: var(--accent); color: white; }
@@ -83,7 +70,6 @@
         
         #privacyModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
         .modal-content { background: var(--card); color: var(--text); margin: 10% auto; padding: 30px; border-radius: 20px; width: 80%; max-width: 500px; text-align: left; }
-        .modal-content h2 { color: var(--gold); margin-top: 0; }
         .close-btn { float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
 
         footer { margin-top: 50px; padding: 30px; font-size: 14px; opacity: 0.6; border-top: 1px solid #eee; }
@@ -119,74 +105,42 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closePrivacy()">&times;</span>
         <h2>Privacy Policy</h2>
-        <p><strong>100% Private & Safe:</strong> Your privacy is our priority.</p>
-        <ul>
-            <li>We do <strong>not</strong> store any text you type.</li>
-            <li>All font generation happens locally on your device.</li>
-            <li>Verified Link: <a href="https://bit.ly/fancygenerator" style="color: var(--gold);">bit.ly/fancygenerator</a></li>
-        </ul>
-        <p>Enjoy 100% secure stylish text generation!</p>
+        <p>Your privacy is our priority. Generation happens locally.</p>
     </div>
 </div>
 
 <script>
     let favorites = JSON.parse(localStorage.getItem('vip_fav_list')) || [];
     function toggleTheme() { document.body.classList.toggle('dark'); }
-
     function openPrivacy() { document.getElementById('privacyModal').style.display = "block"; }
     function closePrivacy() { document.getElementById('privacyModal').style.display = "none"; }
-    window.onclick = function(event) { if (event.target == document.getElementById('privacyModal')) closePrivacy(); }
 
     const baseAlphabets = [
-        { name: "Bold Block", u: 0x1D400, l: 0x1D41A },
-        { name: "Italic Sharp", u: 0x1D434, l: 0x1D44E },
-        { name: "Bold Italic", u: 0x1D468, l: 0x1D482 },
         { name: "Script Luxury", u: 0x1D49C, l: 0x1D4B6 },
-        { name: "Bold Script", u: 0x1D4D0, l: 0x1D4EA },
-        { name: "Fraktur Medieval", u: 0x1D504, l: 0x1D51E },
         { name: "Double Struck", u: 0x1D538, l: 0x1D552 },
-        { name: "Gothic Bold", u: 0x1D56C, l: 0x1D586 },
-        { name: "Sans Serif", u: 0x1D5A0, l: 0x1D5BA },
-        { name: "Sans Bold", u: 0x1D5D4, l: 0x1D5EE },
+        { name: "Italic Sharp", u: 0x1D434, l: 0x1D44E },
+        { name: "Bold Block", u: 0x1D400, l: 0x1D41A },
+        { name: "Monospace", u: 0x1D670, l: 0x1D68A },
+        { name: "Fraktur", u: 0x1D504, l: 0x1D51E },
         { name: "Sans Italic", u: 0x1D608, l: 0x1D622 },
-        { name: "Sans Bold Italic", u: 0x1D63C, l: 0x1D656 },
-        { name: "Monospace Code", u: 0x1D670, l: 0x1D68A },
-        { name: "Bold Greek", u: 0x1D6A8, l: 0x1D6C2 },
+        { name: "Gothic", u: 0x1D56C, l: 0x1D586 },
         { name: "Circled", u: 0x24B6, l: 0x24D0 }
     ];
 
     const decos = [
-        { n: "Crown VIP", f: t => `👑 ${t} 👑` },
-        { n: "Royal Wings", f: t => `꧁ ${t} ꧂` },
-        { n: "Eagle King", f: t => `🦅 ${t} 🦅` },
-        { n: "Magic Heart", f: t => `♥ ${t} ♥` },
-        { n: "Love Vibe", f: t => `💘 ${t} 💘` },
-        { n: "Star Style", f: t => `★彡 ${t} 彡★` },
-        { n: "VIP Box", f: t => `『 ${t} 』` },
-        { n: "Gamer Boss", f: t => `亗 ${t} 亗` },
-        { n: "Lightning", f: t => `⚡ ${t} ⚡` },
-        { n: "Fire Burn", f: t => `🔥 ${t} 🔥` },
-        { n: "Diamond King", f: t => `💎 ${t} 💎` },
-        { n: "Lion VIP", f: t => `🦁 ${t} 🦁` },
-        { n: "Snake King", f: t => `🐍 ${t} 🐍` },
-        { n: "Skull Style", f: t => `☠ ${t} ☠` },
-        { n: "Rose Love", f: t => `🌹 ${t} 🌹` },
-        { n: "Sword Hero", f: t => `⚔️ ${t} ⚔️` },
-        { n: "Cross VIP", f: t => `† ${t} †` },
-        { n: "Cyber Link", f: t => `[ ${t} ]` },
-        { n: "Butterfly", f: t => `🦋 ${t} 🦋` },
-        { n: "Musical", f: t => `🎵 ${t} 🎵` },
-        { n: "Alien Boss", f: t => `👾 ${t} 👾` },
-        { n: "Infinity", f: t => `∞ ${t} ∞` }
+        { n: "Crown", f: t => `👑 ${t} 👑` },
+        { n: "Wings", f: t => `꧁ ${t} ꧂` },
+        { n: "Heart", f: t => `♥ ${t} ♥` },
+        { n: "Gamer", f: t => `亗 ${t} 亗` },
+        { n: "Star", f: t => `★彡 ${t} 彡★` }
     ];
 
-    // FIX: FALLBACK ADD KIYA TAAKI KHALI BOX NA AAYEIN
     function convert(str, u, l) {
         return str.split('').map(c => {
             let code = c.charCodeAt(0);
             if (code >= 65 && code <= 90) return String.fromCodePoint(u + (code - 65));
             if (code >= 97 && code <= 122) return String.fromCodePoint(l + (code - 97));
-            return c; // Box fix: Jo character font mein nahi hoga wo asli hi rahega
+            return c;
         }).join('');
     }
 
@@ -198,16 +152,16 @@
         if(!input.trim()) return;
 
         let styles = [];
-        
-        // SABSE FAMOUS STYLES PEHLE (TOP PER)
-        baseAlphabets.slice(0, 15).forEach((b, bi) => {
+
+        // Mixed Variety for Top Section
+        baseAlphabets.forEach((b, bi) => {
             let core = convert(input, b.u, b.l);
             decos.forEach((d, di) => {
                 styles.push({ id: `m-${bi}-${di}`, t: d.f(core), n: `${b.name} ${d.n}` });
             });
         });
 
-        // PHIR SIMPLE STYLES
+        // Simple fonts
         baseAlphabets.forEach((b, bi) => {
             styles.push({ id: `b-${bi}`, t: convert(input, b.u, b.l), n: b.name });
         });
@@ -216,11 +170,11 @@
         const otherItems = styles.filter(s => !favorites.includes(s.id));
 
         if(favItems.length > 0) {
-            fav.innerHTML = `<div class="section-header">⭐ Saved VIP Collection</div>`;
+            fav.innerHTML = `<div class="section-header">⭐ Saved Collection</div>`;
             favItems.forEach(s => fav.appendChild(createCard(s, true)));
         }
 
-        main.innerHTML = `<div class="section-header">🚀 ${styles.length} Unique Styles</div>`;
+        main.innerHTML = `<div class="section-header">🚀 Premium Styles</div>`;
         otherItems.forEach(s => main.appendChild(createCard(s, false)));
     }
 
