@@ -93,7 +93,18 @@
     </div>
     
     <input type="text" id="userInput" placeholder="Type your name here..." oninput="generate()">
+<!-- Generator Tabs -->
+<div id="generatorBox" style="display:none; margin-top:20px;">
+    <div style="text-align:center; margin-bottom:10px;">
+        <button onclick="showTab('style')" style="padding:8px 12px; margin:3px; cursor:pointer;">Style / Fonts</button>
+        <button onclick="showTab('emoji')" style="padding:8px 12px; margin:3px; cursor:pointer;">Emoji Builder</button>
+    </div>
 
+    <div id="styleTab"></div>
+    <div id="emojiTab" style="display:none;">
+        <div id="emojiBuilder"></div>
+    </div>
+</div>
     <div id="fav-box"></div>
     <div id="main-box"></div>
 
@@ -113,6 +124,70 @@
 </div>
 
 <script>
+// Show / hide generator
+function showGenerator(){
+    const box = document.getElementById("generatorBox");
+    box.style.display = box.style.display==="none"?"block":"none";
+}
+
+// Tab switch
+function showTab(tab){
+    document.getElementById("styleTab").style.display =
+        tab==="style"?"block":"none";
+    document.getElementById("emojiTab").style.display =
+        tab==="emoji"?"block":"none";
+}
+
+// Emoji groups (1000+ emojis add kar sakte ho)
+const emojiGroups = {
+    popular: ["🔥","👑","✨","💎","⚡","⭐","💀","😈","🎯","🚀"],
+    gaming: ["🎮","🕹️","🏆","🥇","⚔️","🛡️","🎯","💣","🔫","👾"],
+    royal: ["👑","⚜️","💎","🪽","🏰","🛡️","✨","🔱"],
+    love: ["❤️","💖","💕","💘","🌹","😍","😘"]
+};
+
+// Load emoji builder
+function loadEmojiBuilder(){
+    const box = document.getElementById("emojiBuilder");
+    box.innerHTML = "";
+    Object.keys(emojiGroups).forEach(cat=>{
+        let sec = document.createElement("div");
+        sec.style.marginBottom="15px";
+        sec.innerHTML=`<h3 style="text-align:left;">${cat.toUpperCase()}</h3>`;
+        emojiGroups[cat].forEach(e=>{
+            let btn=document.createElement("button");
+            btn.innerText=e;
+            btn.style.margin="3px";
+            btn.style.padding="8px 12px";
+            btn.style.fontSize="20px";
+            btn.style.cursor="pointer";
+            btn.onclick=()=>addEmoji(e);
+            sec.appendChild(btn);
+        });
+        box.appendChild(sec);
+    });
+}
+
+let leftEmoji="", rightEmoji="";
+function addEmoji(e){
+    if(!leftEmoji) leftEmoji=e;
+    else rightEmoji=e;
+    updatePreview();
+}
+function updatePreview(){
+    const text=document.getElementById("userInput").value;
+    const builder=document.getElementById("emojiBuilder");
+    builder.innerHTML+=`
+        <div style="margin-top:10px; display:flex; align-items:center; gap:10px;">
+            <span style="font-size:20px;">${leftEmoji} ${text} ${rightEmoji}</span>
+            <button onclick="navigator.clipboard.writeText('${leftEmoji} ${text} ${rightEmoji}')"
+                style="padding:5px 10px; cursor:pointer;">Copy</button>
+        </div>
+    `;
+}
+
+// Auto reload emoji builder
+document.getElementById("userInput").addEventListener("input", loadEmojiBuilder);    
     let favorites = JSON.parse(localStorage.getItem('vip_fav_list')) || [];
     function toggleTheme() { document.body.classList.toggle('dark'); }
     function openPrivacy() { document.getElementById('privacyModal').style.display = "block"; }
